@@ -1,5 +1,6 @@
 package com.test;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -15,13 +16,22 @@ public class SeleniumDemo {
 
     private WebDriver driver;
 
+    @BeforeEach
+    public void setup(){
+        System.out.println("Setup Executed");
+        driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    public void tearDown(){
+        System.out.println("Test execution completed");
+        driver.close();
+    }
 
     @Test
-    public void t2() {
+    public void t1() {
 
-        driver = new ChromeDriver();
         driver.get("file:///Users/java/FirstMavenJavaProject/src/main/webapp/MyWebApp.html");
-
 
         WebElement dropdown = driver.findElement(By.id("selectTest1"));
         dropdown.findElement(By.xpath("/html/body/form/select[1]/option[2]")).click();
@@ -40,6 +50,12 @@ public class SeleniumDemo {
         value = driver.findElement(By.id("selectTest3")).getAttribute("value");
         assertEquals(value, "No");
 
-        driver.close();
+
+
+    }
+
+    @Test
+    public void dummyTest(){
+        System.out.println("dummyTest");
     }
 }
