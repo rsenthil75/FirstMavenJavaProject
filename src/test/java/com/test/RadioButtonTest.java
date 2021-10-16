@@ -39,9 +39,12 @@ public class RadioButtonTest {
         radioBtns.get(0).click();
 
         for (WebElement rBtn : radioBtns) {
-            if (rBtn.isSelected())
+            if (rBtn.isSelected()) {
                 actualValue = rBtn.getAttribute("value");
+                break;
+            }
         }
+
         assertEquals(expectedVale, actualValue);
     }
 }
